@@ -52,6 +52,21 @@ The notebook writes three files to `results/`: `fairness_metrics.csv`, `fairness
 
 The target protected attribute is excluded from the classifier features. Baseline and reweighed models are evaluated on the same held-out test set. The notebook also reports fairness metrics for the original labels.
 
+## Additional Adult Experiment
+
+A second experiment compares Reweighing with an unweighted baseline using a configuration closer to the original paper.
+
+- Dataset: Adult Census Income, 48,842 records, with unknown values retained as a separate category.
+- Features: Original Adult predictors, excluding sex and fnlwgt.
+- Validation: 10-fold cross-validation, stratified jointly by protected group and outcome, with shuffling and random seed 42.
+- Decision Tree: criterion="entropy", min_samples_leaf=20, random_state=42.
+- Gaussian Naive Bayes: var_smoothing=1e-9.
+- Preprocessing: One-hot encoding and numerical standardization fitted independently within each training fold.
+- Mitigation: AIF360 Reweighing, applied to training folds only.
+- Metrics: DP_Diff, DIR, Accuracy and Balanced Accuracy.
+
+The experiment runs automatically when executing all cells in fairness_evaluation.ipynb. Its results are saved to results/adult_10fold_comparison.csv.
+
 ## References
 
 - Kamiran, F., & Calders, T. (2012). [*Data preprocessing techniques for classification without discrimination*](https://doi.org/10.1007/s10115-011-0463-8). *Knowledge and Information Systems*, 33, 1–33.
