@@ -1,0 +1,4 @@
+Dataset,N_total,N_train,N_test,N_features,Train_weighted_DP_Diff,Protected groups (0 / 1)
+Adult,45222,36177,9045,17,-5.551115123125783e-17,Sex: Female / Male
+German,1000,800,200,10,-1.1102230246251565e-16,Age: <=25 / >25
+COMPAS,5278,4222,1056,9,1.1102230246251565e-16,Race: African-American / Caucasian
